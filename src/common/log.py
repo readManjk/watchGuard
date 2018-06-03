@@ -10,7 +10,7 @@ from src.config.default import LOG_FILE_NAME
 
 class Log(object):
 
-    def __init__(self, log_name, level=logging.DEBUG):
+    def __init__(self, log_name="", level=logging.DEBUG):
         self.log = logging.getLogger(log_name)
         self.log.setLevel(level)
         fmt = logging.Formatter("[%(name)s][%(asctime)s][%(filename)s][%(levelname)s] %(message)s", "%Y-%m-%d %H:%M:%S")
