@@ -1,5 +1,6 @@
 # watchGuard
 根据用户要求选择特定产品的性能描述
+
 一：解决方案
 1. 在比较网址首页，通过Python发送request get请求即可获得首页html
 2. 通过BeautifulSoup模块解析html，可获得各产品型号
