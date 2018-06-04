@@ -7,7 +7,6 @@
 from bs4 import BeautifulSoup
 from src.config.default import PERFORMANCE
 from src.common import convert
-from src.framework.model import connection
 
 
 class Product(object):
@@ -78,11 +77,3 @@ class Product(object):
         else:
             tr_tag = []
         return tr_tag
-
-
-if __name__ == "__main__":
-    page = connection.open_url("https://www.watchguard.com/wgrd-products/appliances-compare/1320/1320/1320")
-    pt = Product('M440', page)
-    data = pt.get_product_performance()
-    print(pt.name)
-    print(pt.get_product_performance())

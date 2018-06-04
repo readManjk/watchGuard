@@ -5,7 +5,7 @@
 @time:2018/06/03 23:23:38
 """
 from bs4 import BeautifulSoup
-from src.config.default import COMPARE_URL,USER_PRODUCT
+from src.config.default import COMPARE_URL, USER_PRODUCT
 from src.framework.model import connection
 from src.framework.model.product import Product
 
@@ -43,7 +43,7 @@ class WatchGuard(object):
             获取产品对象
         :return: Product 对象
         """
-        url = COMPARE_URL+"/%s/%s/%s" % (pid, pid, pid)
+        url = COMPARE_URL + "/%s/%s/%s" % (pid, pid, pid)
         page = connection.open_url(url)
         prd = Product(name, page)
         return prd
