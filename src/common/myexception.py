@@ -14,3 +14,9 @@ class MyException(Exception):
 
     def __str__(self):
         return self.message
+
+
+class RequestHostFailed(MyException):
+
+    def __init__(self, message):
+        super(RequestHostFailed, self).__init__(message)
