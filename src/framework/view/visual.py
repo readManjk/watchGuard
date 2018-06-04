@@ -6,12 +6,14 @@
 @description: 接受逻辑层的数据，然后按照用户需求输出数据
 """
 import csv
+from src.common.log import Log
 
 
 class Visual(object):
 
     def __init__(self, file):
         self.file = file
+        self.log = Log('')
 
     def write_to_csv(self, title, value):
         """
@@ -20,7 +22,10 @@ class Visual(object):
         :param value: [list] 写入的行数据列表
         :return:
         """
-        with open(self.file, 'w', newline="") as f:
-            writer = csv.writer(f, dialect='excel')
-            writer.writerow(title)
-            writer.writerows(value)
+        try:
+            with open(self.file, 'w', newline="") as f:
+                writer = csv.writer(f, dialect='excel')
+                writer.writerow(title)
+                writer.writerows(value)
+        except IOError as e:
+            self.log.error('写文件失败 %s' % str(e))

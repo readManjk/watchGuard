@@ -6,6 +6,7 @@
 """
 from bs4 import BeautifulSoup
 from src.config.default import PERFORMANCE
+from src.common import convert
 from src.framework.model import connection
 
 
@@ -33,14 +34,22 @@ class Product(object):
     def get_product_performance(self):
         """
             @summary 获取产品的性能数据
-        :return performance_data: 以列表形式返回，其中元素是字典(key：性能名称，value：性能数据)
+        :return performance_data: 返回一个字典(key：性能名称，value：性能数据)
         """
-        performance_data = []
+        short_name = str(self.name).split(' ')[-1]
+        performance_data = {"Model": short_name}
+        flag_number = 0
         for tr in self.tr_tag:
             td = tr.find_all('td')
             for index, v in enumerate(td):
-                if v.text and str(v.text).strip() in PERFORMANCE:
-                    performance_data.append({v.text: td[index + 1].text})
+                title = str(v.text).strip()
+                if index < td.__len__()-1:
+                    value = str(td[index + 1].text).strip()
+                if title and title in PERFORMANCE:
+                    if title == 'Firewall Throughput':
+                        flag_number = convert.data_flow(value)
+                    performance_data.update({title: value})
+        performance_data.update({'flag_number': flag_number})
         return performance_data
 
     def get_product_vpn_tunnels(self):
@@ -76,5 +85,4 @@ if __name__ == "__main__":
     pt = Product('M440', page)
     data = pt.get_product_performance()
     print(pt.name)
-    for i in data:
-        print(i)
+    print(pt.get_product_performance())
