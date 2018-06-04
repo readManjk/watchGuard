@@ -20,7 +20,7 @@ class Visual(object):
             @summary 将用户数据写入CSV文件
         :param title: [list] 标题
         :param value: [list] 写入的行数据列表
-        :return:
+        :return:None
         """
         try:
             with open(self.file, 'w', newline="") as f:

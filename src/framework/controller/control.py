@@ -19,7 +19,7 @@ class Control(WatchGuard):
     def save_performance_data(self):
         """
             @summary 存储产品的performance数据
-        :return:
+        :return:None
         """
         self.save_product_obj()
         # 遍历每个产品对象，获取所以的产品数据存以列表形式放在all_data中
@@ -50,7 +50,7 @@ class Control(WatchGuard):
         """
             @summary 采用多线程获取存储产品对象【如果产品数量过多，则要限制多线程，防止服务器忙于过多请求，
                      具体限制数量根据网站性能和要求给出】
-        :return:
+        :return:None
         """
         user_prd = self.choose_product()
         thread_list = []
