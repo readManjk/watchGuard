@@ -22,7 +22,7 @@ def open_url(url):
         res = requests.get(url, headers=header)
     except Exception as e:
         log.exception('连接被服务器强制断开，请重新尝试...[%s]' % str(e))
-        RequestHostFailed('request请求被服务器强制断开')
+        raise RequestHostFailed('request请求被服务器强制断开')
     if res.status_code == 200:
         data = res.text
     else:
