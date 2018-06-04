@@ -5,7 +5,6 @@
 @time:2018/06/04 08:00:45
 """
 from threading import Thread
-from src.config.default import USER_PRODUCT
 from src.framework.view.visual import Visual
 from src.framework.model.watchguard import WatchGuard
 
@@ -42,7 +41,7 @@ class Control(WatchGuard):
                     temp.append(v)
             value.append(temp)
         # 调用view层进行写文件
-        file_name = "..\\..\\data\\performance.csv"
+        file_name = "..\\data\\performance.csv"
         visual = Visual(file_name)
         visual.write_to_csv(title, value)
 
@@ -69,7 +68,3 @@ class Control(WatchGuard):
         prd = self.get_product_obj(name, pid)
         self.product_obj_list.append(prd)
 
-
-if __name__ == '__main__':
-    ct = Control(USER_PRODUCT)
-    ct.save_performance_data()
