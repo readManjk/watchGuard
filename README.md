@@ -39,6 +39,6 @@
 6. config文件夹含一些配置模块
 
 三：脚本使用方法
-1. Python3环境直接运行run文件夹中的run.py
+1. Python3环境直接运行run文件夹中的run.py,运行结果在data文件下以performance.csv存储
    
 
