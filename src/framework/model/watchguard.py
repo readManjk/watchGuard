@@ -5,7 +5,8 @@
 @time:2018/06/03 23:23:38
 """
 from bs4 import BeautifulSoup
-from src.config.default import COMPARE_URL, USER_PRODUCT
+from src.config.default import COMPARE_URL
+from src.common.log import Log
 from src.framework.model import connection
 from src.framework.model.product import Product
 
@@ -15,6 +16,7 @@ class WatchGuard(object):
     def __init__(self, user_product):
         self.compare_url = COMPARE_URL
         self.user_product = user_product
+        self.log = Log('watchGuard')
 
     def choose_product(self):
         """
@@ -36,6 +38,7 @@ class WatchGuard(object):
                     name = str(opt.text)
                     value = str(opt.get('value'))
                     data.append({'name': name, 'id': value})
+        self.log.debug("选取用户特定产品型号完成")
         return data
 
     def get_product_obj(self, name, pid):
@@ -46,4 +49,6 @@ class WatchGuard(object):
         url = COMPARE_URL + "/%s/%s/%s" % (pid, pid, pid)
         page = connection.open_url(url)
         prd = Product(name, page)
+        short_name = name.split(' ')[-1]
+        self.log.debug('%s 实例化产品对象完成' % short_name)
         return prd
