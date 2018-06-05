@@ -5,6 +5,7 @@
 @time:2018/06/04 08:00:45
 """
 from threading import Thread
+from src.common.log import Log
 from src.framework.view.visual import Visual
 from src.framework.model.watchguard import WatchGuard
 
@@ -14,6 +15,7 @@ class Control(WatchGuard):
     def __init__(self, user_product):
         super(Control, self).__init__(user_product)
         self.product_obj_list = []
+        self.log = Log('control')
 
     def save_performance_data(self):
         """
@@ -44,6 +46,7 @@ class Control(WatchGuard):
         file_name = "..\\data\\performance.csv"
         visual = Visual(file_name)
         visual.write_to_csv(title, value)
+        self.log.debug("存储产品performance数据完成, 结果在data文件下的performance.csv")
 
     def save_product_obj(self):
         """
