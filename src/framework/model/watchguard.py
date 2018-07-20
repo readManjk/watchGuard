@@ -30,12 +30,12 @@ class WatchGuard(object):
         optgroup = select_tag.find_all('optgroup')
         # 遍历下拉框选择Firebox M Series、Firebox T Series型号的设备id
         for group in optgroup:
-            label = str(group.get('label'))
+            label = str(group.get('label').encode('utf-8'))
             if label in self.user_product:
                 # 获取到该型号的option标签列表
                 option_list = group.find_all('option')
                 for opt in option_list:
-                    name = str(opt.text)
+                    name = str(opt.text.encode('utf-8'))
                     value = str(opt.get('value'))
                     data.append({'name': name, 'id': value})
         self.log.debug("选取用户特定产品型号完成")
